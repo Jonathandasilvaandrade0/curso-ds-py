@@ -1,0 +1,40 @@
+def calcular_consumo():
+    # Laço de repetição principal
+    while True:
+        print("\n" + "=" * 40)
+        print("   CALCULADORA DE CONSUMO ELÉTRICO   ")
+        print("=" * 40)
+
+        # 1. Entrada de dados do usuário
+        nome_aparelho = input("\nDigite o nome do aparelho (ex.: Geladeira): ").strip()
+        
+        try:
+            potencia = float(input("Digite a potência do aparelho em Watts (W): "))
+            horas_dia = float(input("Digite o tempo médio de uso diário em horas: "))
+        except ValueError:
+            print("\n[ERRO] Por favor, insira apenas valores numéricos válidos.")
+            continue  # Reinicia o laço se houver erro de digitação
+
+        # 2. Cálculo do consumo mensal em kWh
+        # Fórmula: consumoMensal = (potencia * horasDia * 30) / 1000
+        consumo_mensal = (potencia * horas_dia * 30) / 1000
+
+        # Cálculo do custo estimado (Tarifa fixa de R$ 0,75 / kWh)
+        tarifa_kwh = 0.75
+        custo_estimado = consumo_mensal * tarifa_kwh
+
+        # 3. Exibição do resultado formatado
+        print("\n" + "-" * 40)
+        print(f"Aparelho: {nome_aparelho}")
+        print(f"Consumo estimado: {consumo_mensal:.2f} kWh/mês")
+        print(f"Custo estimado: R$ {custo_estimado:.2f}/mês")
+        print("-" * 40)
+
+        # 4. Pergunta se o usuário deseja realizar um novo cálculo
+        opcao = input("\nDeseja calcular outro aparelho? (s/n): ").strip().lower()
+        if opcao != 's':
+            print("\nObrigado por utilizar a calculadora! Encerrando o programa...")
+            break  # Encerra o laço 'while' e sai do programa
+
+if __name__ == "__main__":
+    calcular_consumo()
